@@ -1,0 +1,30 @@
+input{
+	border: none;
+	border-bottom: 2px solid $inputBorder;
+	@include prefix(border-radius, 2px, webkit moz ms o);
+	padding: 1rem 0;
+	@include transition(all ease-in-out 230ms);
+	background-color: initial;
+	color: $white;
+	font-size: 1rem;
+
+	&:focus{
+		border-color: $inputFocusBorder;
+	}
+}
+
+.input-wrapper{
+	margin-bottom: 20px;
+	width: 100%;
+	display: block;
+	position: relative;
+
+	input{
+		width: 100%;
+	}
+}
+
+form{
+	display: block;
+	width: 100%;
+}

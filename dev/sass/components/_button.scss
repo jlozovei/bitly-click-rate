@@ -1,0 +1,25 @@
+.button{
+	display: inline-block;
+	padding: 1rem;
+	border: 1px solid transparent;
+	@include transition(all ease-in-out 230ms);
+	font-size: 1rem;
+	cursor: pointer;
+
+	&--green{
+		background-color: $btnGreenBg;
+		color: $white;
+
+		&:hover{ background-color: $btnGreenHoverBg; }
+		&:active{ background-color: $btnGreenActiveBg; }
+	}
+}
+
+.button-wrapper{
+	text-align: right;
+	width: 100%;
+	display: block;
+	position: relative;
+
+	.button{ min-width: 120px; }
+}

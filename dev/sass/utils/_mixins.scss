@@ -1,0 +1,154 @@
+@mixin font-size($size){
+    font-size: $size + px;
+    font-size: (0.0625 * $size) + em;
+}
+
+@mixin line-height($size){
+    line-height: $size + px;
+    line-height: (0.0625 * $size) + em;
+}
+
+@mixin animation($args){
+    -webkit-animation: $args;
+    -moz-animation: $args;
+    -ms-animation: $args;
+    -o-animation: $args;
+    animation: $args;
+}
+
+@mixin transition($args) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+
+@mixin transform($args){
+    -webkit-transform: $args;
+    -moz-transform: $args;
+    -ms-transform: $args;
+    -o-transform: $args;
+    transform: $args;
+}
+
+@mixin translate($x, $y) {
+   @include transform(translate($x, $y));
+}
+
+@mixin translateX($x) {
+   @include transform(translateX($x));
+}
+
+@mixin translateY($y) {
+   @include transform(translateY($y));
+}
+
+@mixin translateZ($z) {
+   @include transform(translateY($z));
+}
+
+@mixin scale($scale) {
+   @include transform(scale($scale));
+}
+
+@mixin rotate($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+
+@mixin skew($x, $y){
+    @include transform(skew($x, $y));
+}
+
+@mixin skewX($x){
+    @include transform(skewX($x));
+}
+
+@mixin skewY($y){
+    @include transform(skewY($y));
+}
+
+@mixin title-shadow($shadowA, $shadowB){
+    text-shadow: 1px 1px 0 $shadowA, 3px 3px 0px $shadowB;
+}
+
+@mixin prefix($property, $value, $prefixes: ()) {
+    @each $prefix in $prefixes {
+        #{'-' + $prefix + '-' + $property}: $value;
+    }
+ 
+    #{$property}: $value;
+}
+
+@mixin multiple-animations($animate...) {
+    $max: length($animate);
+    $animations: '';
+
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+
+        @if $i < $max {
+            $animations: #{$animations + ", "};
+        }
+    }
+    -webkit-animation: $animations;
+    -moz-animation:    $animations;
+    -o-animation:      $animations;
+    animation:         $animations;
+}
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@mixin display-flex(){
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+@mixin display-grid(){
+    display: -ms-grid;
+    display:     grid;
+}
+
+
+
+//responsive font
+@function strip-unit($value) {
+    @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+    $u1: unit($min-vw);
+    $u2: unit($max-vw);
+    $u3: unit($min-font-size);
+    $u4: unit($max-font-size);
+
+    @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+        & {
+
+            font-size: $min-font-size;
+            @media screen and (min-width: $min-vw) {
+                font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+            }
+
+            @media screen and (min-width: $max-vw) {
+                font-size: $max-font-size;
+            }
+        }
+    }
+}

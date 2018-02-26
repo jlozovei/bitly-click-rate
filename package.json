@@ -1,0 +1,32 @@
+{
+  "name": "bitly-click-rate",
+  "version": "1.0.0",
+  "description": "Bitly API visual abstraction for click-rate measuring",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "js": "gulp scripts",
+    "sass": "gulp styles"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "font-awesome": "^4.7.0"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "node-sass": "^4.7.2",
+    "webpack": "^3.11.0",
+    "webpack-stream": "^4.0.1"
+  }
+}

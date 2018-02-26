@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:300,600');
+
+@import './utils/_colors';
+@import './utils/_mixins';
+@import './utils/_reset';
+
+html, body, *{
+	font-family: 'Muli', arial, sans-serif;
+}
+
+body{
+	background-color: $bodyBg;
+	color: $white;
+}
+
+@import './components/_index';

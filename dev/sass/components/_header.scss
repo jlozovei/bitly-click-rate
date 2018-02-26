@@ -1,0 +1,12 @@
+header{
+	position: relative;
+	@include display-flex();
+	align-items: center;
+	justify-content: center;
+	padding: 1.5rem 0;
+	font-size: 1.5rem;
+	line-height: 1.72;
+	border-bottom: 1px solid $white;
+	width: 100%;
+	text-align: center;
+}
