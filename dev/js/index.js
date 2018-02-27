@@ -16,6 +16,7 @@ import axios from 'axios'
 				this.inputLink = document.getElementById('link')
 				this.submit = document.getElementById('measure')
 				this.footer = document.getElementById('footer')
+				this.target = document.getElementById('click-rate')
 
 				this.bindEvents()
 			},
@@ -27,6 +28,9 @@ import axios from 'axios'
 					event.preventDefault()
 					event.stopPropagation()
 
+					this.submit.innerHTML = 'Loading...'
+					this.target.innerHTML = ''
+
 					this.sendData()
 				})
 			},
@@ -34,18 +38,40 @@ import axios from 'axios'
 			sendData(){
 				let token = this.inputToken.value,
 					link = this.inputLink.value,
-					url = `${base_url}?format=txt&unit=day&units=-1&rollup=true&access_token=${token}&link=${link}`
+					url = `${base_url}?unit=day&units=-1&rollup=true&access_token=${token}&link=${link}`
 
-				if(token !== '' && link !== '')
-					axios.get(url).then((data) => {
-						console.log(data)
+				if(token !== '' && link !== ''){
+					fetch(url)
+					.then((response) => {
+						return response.json()
 					})
-				else
-					this.showErrors()
+					.then((resp) => {
+						const {data} = resp
+						this.target.innerHTML = data.link_clicks
+						this.submit.innerHTML = 'Measure'
+					})
+
+				}else
+					this.showErrors(token, link)
 			},
 
-			showErrors(){
-				alert('Put the values')
+			showErrors(token, link){
+				this.submit.innerHTML = 'Measure'
+
+				let msg = 'Please,'
+				if(token === '')
+					msg += ' put your access token'
+
+				if(link === ''){
+					if(token === '')
+						msg += ' and'
+					else
+						msg += ' put'
+
+					msg += ' the link you want to measure'
+				}
+
+				alert(msg)
 			},
 
 			copyFooter() {
