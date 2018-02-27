@@ -4,4 +4,4 @@ Check the click-rate for your bitly links with an easy and fast interface. To do
 
 Simple, isn't it? :grinning:  
 
-Made with :heart: by me, [jlozovei](https://github.com/jlozovei). Hope it could help you!
+Made with :heart: by me, [@jlozovei](https://github.com/jlozovei). Hope it could help you!
