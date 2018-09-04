@@ -48,14 +48,14 @@ gulp.task('sass', function () {
 
 
 gulp.task('default', () => {
-	gulp.watch('./dev/js/*.js', ['js']);
-	gulp.watch('./dev/sass/**/*.scss', ['sass']);
+	gulp.watch('./dev/js/*.js', gulp.series('js'));
+	gulp.watch('./dev/sass/**/*.scss', gulp.series('sass'));
 });
 
 gulp.task('scripts', () => {
-	gulp.watch('./dev/js/*.js', ['js']);
+	gulp.watch('./dev/js/*.js', gulp.series('js'));
 });
 
 gulp.task('styles', () => {
-	gulp.watch('./dev/sass/**/*.scss', ['sass']);
+	gulp.watch('./dev/sass/**/*.scss', gulp.series('sass'));
 });
